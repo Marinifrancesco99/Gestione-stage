@@ -13,7 +13,7 @@ def create_app():
     db.init_app(app)
     CORS(app)
 
-    # Importa e registra le rotte
+    # Registra le rotte
     
     app.register_blueprint(user_bp, url_prefix="/api/users")
 

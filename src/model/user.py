@@ -5,3 +5,5 @@ class User(db.Model):
     name = db.Column(db.String(50))
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(150))
+    role = db.Column(db.String(50))
+    tutor = db.relationship('Tutor', uselist=False, back_populates='user')
