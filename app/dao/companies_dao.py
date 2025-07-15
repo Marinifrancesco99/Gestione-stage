@@ -1,68 +1,74 @@
 from app import db
 from app.model.companies import Companies
 
-# get all companies
-def get_all_companies():
-    return Companies.query.all()
+class CompaniesDAO:
+    # get all companies
+    @staticmethod
+    def get_all_companies():
+        return Companies.query.all()
 
-# get company by id
-def get_company_by_id(id):
-    return Companies.query.get(id)
+    # get company by id
+    @staticmethod
+    def get_company_by_id(id):
+        return Companies.query.get(id)
 
-# create a new company
-def create_company(number, companyName, address, email, province, note, city, cap, partitaIVA, type_id):
-    new_company = Companies(
-        number=number,
-        companyName=companyName,
-        address=address,
-        email=email,
-        province=province,
-        note=note,
-        city=city,
-        cap=cap,
-        partitaIVA=partitaIVA,
-        type_id=type_id
-    )
-    db.session.add(new_company)
-    db.session.commit()
-    return new_company
+    # create a new company
+    @staticmethod
+    def create_company(number, companyName, address, email, province, note, city, cap, partitaIVA, type_id):
+        new_company = Companies(
+            number=number,
+            companyName=companyName,
+            address=address,
+            email=email,
+            province=province,
+            note=note,
+            city=city,
+            cap=cap,
+            partitaIVA=partitaIVA,
+            type_id=type_id
+        )
+        db.session.add(new_company)
+        db.session.commit()
+        return new_company
 
-# update company by id
-def update_company(id, number=None, companyName=None, address=None, email=None, province=None, note=None, city=None, cap=None, partitaIVA=None, type_id=None):
-    company = Companies.query.get(id)
-    if not company:
-        return None
+    # update company by id
+    @staticmethod
+    def update_company(id, number=None, companyName=None, address=None, email=None, province=None, note=None, city=None, cap=None, partitaIVA=None, type_id=None):
+        company = Companies.query.get(id)
+        if not company:
+            return None
 
-    if number is not None:
-        company.number = number
-    if companyName is not None:
-        company.companyName = companyName
-    if address is not None:
-        company.address = address
-    if email is not None:
-        company.email = email
-    if province is not None:
-        company.province = province
-    if note is not None:
-        company.note = note
-    if city is not None:
-        company.city = city
-    if cap is not None:
-        company.cap = cap
-    if partitaIVA is not None:
-        company.partitaIVA = partitaIVA
-    if type_id is not None:
-        company.type_id = type_id
+        if number is not None:
+            company.number = number
+        if companyName is not None:
+            company.companyName = companyName
+        if address is not None:
+            company.address = address
+        if email is not None:
+            company.email = email
+        if province is not None:
+            company.province = province
+        if note is not None:
+            company.note = note
+        if city is not None:
+            company.city = city
+        if cap is not None:
+            company.cap = cap
+        if partitaIVA is not None:
+            company.partitaIVA = partitaIVA
+        if type_id is not None:
+            company.type_id = type_id
 
-    db.session.commit()
-    return company
+        db.session.commit()
+        return company
 
-# delete company by id
-def delete_company(id):
-    company = Companies.query.get(id)
-    if not company:
-        return None
+    # delete company by id
+    @staticmethod
+    def delete_company(id):
+        company = Companies.query.get(id)
+        if not company:
+            return None
 
-    db.session.delete(company)
-    db.session.commit()
-    return company
+        db.session.delete(company)
+        db.session.commit()
+        return company
