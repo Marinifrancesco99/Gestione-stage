@@ -22,4 +22,4 @@ class Student(db.Model):
     
     # Fk di class
     class_id = db.Column(db.Integer, db.ForeignKey('classes.id'))
-    classes = db.relationship("Classes", back_populates="student")
+    classe = db.relationship("Classes", back_populates="students")

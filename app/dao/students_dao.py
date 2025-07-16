@@ -78,5 +78,5 @@ class StudentsDAO:
     @staticmethod
     def get_class_for_student(student_id):
         student = Student.query.get(student_id)
-        return student.classes if student else None
+        return student.classe if student else None
 

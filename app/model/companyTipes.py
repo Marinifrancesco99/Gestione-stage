@@ -7,6 +7,6 @@ class CompanyTypes(db.Model):
     name = db.Column(db.String(50))
     
     # Stabiliamo la relazione 1:1 con Companies
-    company = db.relationship('Companies', back_populates='type', uselist=False)
+    companies = db.relationship("Companies", back_populates="company_type")
     
     

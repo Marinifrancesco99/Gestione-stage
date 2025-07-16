@@ -17,7 +17,7 @@ class Tutor(db.Model):
     internship = db.relationship("Internship", back_populates = "tutor")
     
     # Relazione con Attendance logs
-    attendance_logs = db.relationship("Attendance_logs", back_populates = "tutor")
+    attendance_logs = db.relationship("AttendanceLogs", back_populates="tutor")
     
     # Fk che punta a companies 
     company_id = db.Column(db.Integer, db.ForeignKey('companies.id'))

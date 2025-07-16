@@ -1,8 +1,8 @@
-"""creazione tabelle iniziali
+"""Migrazione iniziale pulita
 
-Revision ID: 7dee1bd24885
+Revision ID: b78497956b79
 Revises: 
-Create Date: 2025-07-13 18:24:14.473807
+Create Date: 2025-07-16 18:00:19.284390
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7dee1bd24885'
+revision = 'b78497956b79'
 down_revision = None
 branch_labels = None
 depends_on = None

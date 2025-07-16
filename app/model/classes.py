@@ -7,7 +7,7 @@ class Classes(db.Model):
     name = db.Column(db.String(50))
     
     # Relazione con student
-    student = db.relationship("Student", back_populates = "classes")
+    students = db.relationship("Student", back_populates="classe")
     
     # Fk di course
     course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))

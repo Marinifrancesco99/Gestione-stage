@@ -25,7 +25,7 @@ class Internship(db.Model):
     tutor = db.relationship("Tutor", back_populates = "internship")
     
     # Relazione con attendance logs
-    attendance_logs = db.relationship("Attendance_logs", back_populates = "internship")
+    attendance_logs = db.relationship("AttendanceLogs", back_populates="internship")
     
     # Fk di student
     student_id = db.Column(db.Integer, db.ForeignKey('students.id'))

@@ -19,7 +19,7 @@ class Companies(db.Model):
     
     # Fk che punta a companyType
     type_id = db.Column(db.Integer, db.ForeignKey('companyTypes.id'))
-    type = db.relationship("CompanyTypes", back_populates="company")
+    company_type = db.relationship("CompanyTypes", back_populates="companies")
     
     # lato non proprietario
     internship = db.relationship("Internship", back_populates = "company")

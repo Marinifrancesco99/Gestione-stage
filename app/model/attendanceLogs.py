@@ -14,9 +14,9 @@ class AttendanceLogs(db.Model):
     
     # Fk che punta a tutor
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutors.id'))
-    tutor = db.relationship("Tutor", back_populates = "attendance_logs")
+    tutor = db.relationship("Tutor", back_populates="attendance_logs")
     
     # Fk che punta ad internship
     internship_id = db.Column(db.Integer, db.ForeignKey('internship.id'))
-    internship = db.relationship("Internship", back_populates = "attendance_logs")
+    internship = db.relationship("Internship", back_populates="attendance_logs")
     
