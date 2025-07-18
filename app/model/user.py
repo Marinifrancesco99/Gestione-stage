@@ -12,6 +12,8 @@ class User(db.Model):
     # Stabiliamo la relazione 1:1 con tutor grazie a uselist=false.
     tutor = db.relationship("Tutor", back_populates="user", uselist=False)
     
-    # Relazioner con student
+    # Relazione con student
     student = db.relationship("Student", back_populates="user", uselist=False)
     
+    # Relazione con notifications
+    notifications = db.relationship("Notification", back_populates="user")

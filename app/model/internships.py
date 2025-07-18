@@ -30,3 +30,6 @@ class Internship(db.Model):
     # Fk di student
     student_id = db.Column(db.Integer, db.ForeignKey('students.id'))
     student = db.relationship("Student", back_populates = "internship")
+    
+    # Relazione con notifications
+    notifications = db.relationship("Notification", back_populates="internship")

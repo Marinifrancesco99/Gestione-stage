@@ -72,3 +72,51 @@ class CompaniesDAO:
         db.session.delete(company)
         db.session.commit()
         return company
+    
+    # Ricerca per settore
+    @staticmethod
+    def search_by_sector(sector):
+        from app.model.companyTipes import CompanyTypes
+        return Companies.query.join(Companies.company_type).filter(CompanyTypes.name.ilike(f"%{sector}%")).all()
+
+    # Ricerca per città
+    @staticmethod
+    def search_by_city(city):
+        return Companies.query.filter(Companies.city.ilike(f"%{city}%")).all()
+
+    # Ricerca per numero minimo di studenti ospitati
+    @staticmethod
+    def search_by_min_students(min_students):
+        from sqlalchemy import func
+        return Companies.query.outerjoin(Companies.internship)\
+            .group_by(Companies.id)\
+            .having(func.count(Companies.internship) >= min_students).all()
+
+    # Ricerca per disponibilità in un periodo
+    @staticmethod
+    def search_available_in_period(start_date, end_date):
+        from app.model.internships import Internship
+        subquery = db.session.query(Internship.company_id)\
+            .filter(
+                Internship.start_date <= end_date,
+                Internship.end_date >= start_date,
+                Internship.status != 'annullato'
+            )
+        return Companies.query.filter(~Companies.id.in_(subquery)).all()
+
+    # Ricerca combinata
+    @staticmethod
+    def advanced_search(sector=None, city=None, min_students=None):
+        from app.model.companyTipes import CompanyTypes
+        from sqlalchemy import func
+        query = Companies.query
+        if sector:
+            query = query.join(Companies.company_type).filter(CompanyTypes.name.ilike(f"%{sector}%"))
+        if city:
+            query = query.filter(Companies.city.ilike(f"%{city}%"))
+        if min_students:
+            query = query.outerjoin(Companies.internship)\
+                .group_by(Companies.id)\
+                .having(func.count(Companies.internship) >= min_students)
+        return query.all()
+    
