@@ -8,7 +8,7 @@ class Notification(db.Model):
     type = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     read = db.Column(db.Boolean, default=False)
-    date = db.Column(db.DateTime, nullable=True)
+    due_date = db.Column(db.DateTime, nullable=True)
 
     # Relazione con user
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
