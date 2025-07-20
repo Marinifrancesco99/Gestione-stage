@@ -10,7 +10,7 @@ migrate = Migrate()  # inizializza Migrate
 
 # Importa tutti i modelli per renderli visibili alle migrazioni
 from app.model import (
-    user, tutor, students, interviews, professors, courses, internships, convention, companies, companyTipes, classes, association, attendanceLogs, HistoryStatus
+    user, tutor, students, interviews, professors, courses, internships, convention, companies, companyTipes, classes, association, attendanceLogs, HistoryStatus, notification
 )
 
 def create_app():
