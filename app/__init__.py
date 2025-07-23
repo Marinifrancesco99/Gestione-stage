@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from app.config import Config
 from app.routes.user_routes import user_bp
+from app.routes.auth_routes import auth_bp
 
 db = SQLAlchemy()
 migrate = Migrate()  # inizializza Migrate
@@ -25,5 +26,6 @@ def create_app():
     # Registra le rotte
     
     app.register_blueprint(user_bp, url_prefix="/api/users")
+    app.register_blueprint(auth_bp, url_prefix="/api/auth")
 
     return app
