@@ -1,4 +1,4 @@
-from app import db
+from app.extension import db
 from app.model.professors import Professor
 
 class ProfessorsDAO:

@@ -1,4 +1,4 @@
-from .. import db
+from app.extension import db
 
 class Tutor(db.Model):
     __tablename__ = 'tutors'
@@ -21,4 +21,4 @@ class Tutor(db.Model):
     
     # Fk che punta a companies 
     company_id = db.Column(db.Integer, db.ForeignKey('companies.id'))
-    company = db.relationship("Company", back_populates = "tutor")
+    company = db.relationship("Companies", back_populates = "tutor")

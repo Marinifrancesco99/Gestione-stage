@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from .. import db
+from app.extension import db
 
 
 class Companies(db.Model):

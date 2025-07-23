@@ -1,4 +1,4 @@
-from app import db
+from app.extension import db
 from app.model.convention import Convention
 from datetime import datetime
 

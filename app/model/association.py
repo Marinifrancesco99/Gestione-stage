@@ -1,4 +1,4 @@
-from .. import db
+from app.extension import db
 
 professor_course = db.Table(
     'professor_course',

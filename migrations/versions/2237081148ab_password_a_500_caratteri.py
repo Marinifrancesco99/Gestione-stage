@@ -1,8 +1,8 @@
-"""aggiunta enum a user
+"""password a 500 caratteri
 
-Revision ID: 4dc56b3b60f3
+Revision ID: 2237081148ab
 Revises: 
-Create Date: 2025-07-20 17:15:35.080637
+Create Date: 2025-07-23 18:23:24.556409
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '4dc56b3b60f3'
+revision = '2237081148ab'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -44,7 +44,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=True),
     sa.Column('email', sa.String(length=120), nullable=True),
-    sa.Column('password', sa.String(length=150), nullable=True),
+    sa.Column('password', sa.String(length=500), nullable=True),
     sa.Column('role', sa.Enum('admin', 'scuola', 'tutor', 'studente', name='user_roles'), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')

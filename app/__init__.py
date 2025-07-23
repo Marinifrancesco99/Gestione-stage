@@ -5,9 +5,8 @@ from flask_migrate import Migrate
 from app.config import Config
 from app.routes.user_routes import user_bp
 from app.routes.auth_routes import auth_bp
+from app.extension import db, migrate
 
-db = SQLAlchemy()
-migrate = Migrate()  # inizializza Migrate
 
 # Importa tutti i modelli per renderli visibili alle migrazioni
 from app.model import (

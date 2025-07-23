@@ -1,5 +1,5 @@
-from app import db
-from app.model.users import User
+from app.extension import db
+from app.model.user import User
 
 class UsersDAO:
     # get all users
@@ -19,11 +19,11 @@ class UsersDAO:
 
     # Create a new user
     @staticmethod
-    def create_user(name, email, password, role):
+    def create_user(name, email, hashed_password, role):
         new_user = User(
             name=name,
             email=email,
-            password=password,
+            password=hashed_password,
             role=role
         )
         db.session.add(new_user)

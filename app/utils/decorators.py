@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import request, jsonify
+from flask import request, jsonify, g
 from app.utils.auth import decode_jwt
 
 def token_required(f):
@@ -14,7 +14,7 @@ def token_required(f):
         if not payload:
             return jsonify({"error": "Token non valido o scaduto"}), 401
 
-        # Passa i dati del token alla funzione originale
-        return f(payload, *args, **kwargs)
+        g.current_user = payload
+        return f(*args, **kwargs)
 
     return decorated_function

@@ -1,5 +1,5 @@
 from datetime import datetime
-from .. import db
+from app.extension import db
 
 class Notification(db.Model):
     __tablename__ = 'notifications'
@@ -12,9 +12,9 @@ class Notification(db.Model):
 
     # Relazione con user
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
-    user = db.relationship("User", backref="notifications")
+    user = db.relationship("User", back_populates="notifications")
 
     # Relazione con stage
     internship_id = db.Column(db.Integer, db.ForeignKey('internship.id'), nullable=True)
-    internship = db.relationship("Internship", backref="notifications")
+    internship = db.relationship("Internship", back_populates="notifications")
 

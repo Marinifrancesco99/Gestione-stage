@@ -1,4 +1,4 @@
-from .. import db
+from app.extension import db
 
 class Interview(db.Model):
     __tablename__ = 'interviews'
@@ -10,7 +10,7 @@ class Interview(db.Model):
     
     # Fk di companies
     company_id = db.Column(db.Integer, db.ForeignKey('companies.id'))
-    company = db.relationship("Company", back_populates = "interview")
+    company = db.relationship("Companies", back_populates = "interview")
     
     # Fk di student
     student_id = db.Column(db.Integer, db.ForeignKey('students.id'))

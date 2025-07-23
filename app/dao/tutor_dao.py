@@ -1,4 +1,4 @@
-from app import db
+from app.extension import db
 from app.model.tutor import Tutor
 from app.model.user import User
 from app.model.internships import Internship

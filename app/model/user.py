@@ -1,4 +1,4 @@
-from .. import db
+from app.extension import db
 from sqlalchemy import Enum
 
 
@@ -8,7 +8,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     email = db.Column(db.String(120), unique=True)
-    password = db.Column(db.String(150))
+    password = db.Column(db.String(500))
     role = db.Column(
         Enum("admin", "scuola", "tutor", "studente", name="user_roles"), nullable=False
     )

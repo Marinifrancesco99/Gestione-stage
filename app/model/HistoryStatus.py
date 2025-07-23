@@ -1,5 +1,5 @@
 from datetime import datetime
-from .. import db
+from app.extension import db
 
 class HistoryStatus(db.Model):
     __tablename__ = 'historyStatus'

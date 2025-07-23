@@ -1,4 +1,4 @@
-from .. import db
+from app.extension import db
 
 class CompanyTypes(db.Model):
     __tablename__ = 'companyTypes'

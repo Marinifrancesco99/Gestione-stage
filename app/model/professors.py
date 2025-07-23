@@ -1,4 +1,4 @@
-from .. import db
+from app.extension import db
 from .association import professor_course
 
 class Professor(db.Model):

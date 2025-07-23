@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from .. import db
+from app.extension import db
 
 class Internship(db.Model):
     __tablename__ = 'internship'
@@ -12,7 +12,7 @@ class Internship(db.Model):
     
     # FK che punta a companies
     company_id = db.Column(db.Integer, db.ForeignKey('companies.id'))
-    company = db.relationship("Company", back_populates= 'internship')
+    company = db.relationship("Companies", back_populates= 'internship')
     
     # Relazione inversa con convention
     convention = db.relationship('Convention', back_populates = 'internship')
