@@ -83,6 +83,11 @@ class CompaniesDAO:
     @staticmethod
     def search_by_city(city):
         return Companies.query.filter(Companies.city.ilike(f"%{city}%")).all()
+    
+    # Ricerca per nome azienda
+    @staticmethod
+    def search_by_name(name):
+        return Companies.query.filter(Companies.companyName.ilike(f"%{name}%")).all()
 
     # Ricerca per numero minimo di studenti ospitati
     @staticmethod
