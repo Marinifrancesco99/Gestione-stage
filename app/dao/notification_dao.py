@@ -7,6 +7,10 @@ class NotificationDAO:
     def get_all_notifications():
         return Notification.query.all()
     
+    @staticmethod
+    def get_notification_by_id(notification_id):
+        return Notification.query.get(notification_id)
+    
     # Retrieves all unread notifications of a user
     @staticmethod
     def get_notifications_for_user(user_id, only_unread=False):
@@ -31,10 +35,10 @@ class NotificationDAO:
     
     # Marks a notification as read
     @staticmethod
-    def delete_notification(notification_id):
+    def mark_notification_as_read(notification_id):
         notification = Notification.query.get(notification_id)
-        if notification:
-            db.session.delete(notification)
+        if notification and not notification.read:
+            notification.read = True
             db.session.commit()
         return notification
     
