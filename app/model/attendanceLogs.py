@@ -20,3 +20,16 @@ class AttendanceLogs(db.Model):
     internship_id = db.Column(db.Integer, db.ForeignKey('internship.id'))
     internship = db.relationship("Internship", back_populates="attendance_logs")
     
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'date': self.date.isoformat() if self.date else None,
+            'start_time': self.start_time.isoformat() if self.start_time else None,
+            'end_time': self.end_time.isoformat() if self.end_time else None,
+            'notes': self.notes,
+            'validation': self.validation,
+            'register_signature': self.register_signature,
+            'tutor_id': self.tutor_id,
+            'internship_id': self.internship_id
+        }

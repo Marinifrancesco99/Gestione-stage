@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from app.config import Config
 from app.routes.user_routes import user_bp
 from app.routes.auth_routes import auth_bp
+from app.routes.attendanceLogs_routes import attendanceLogs_bp
 from app.extension import db, migrate
 
 
@@ -26,5 +27,6 @@ def create_app():
     
     app.register_blueprint(user_bp, url_prefix="/api/users")
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
+    app.register_blueprint(attendanceLogs_bp, url_prefix="/api/attendance_logs")
 
     return app
