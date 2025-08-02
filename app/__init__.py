@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -7,6 +7,7 @@ from app.routes.user_routes import user_bp
 from app.routes.auth_routes import auth_bp
 from app.routes.attendanceLogs_routes import attendanceLogs_bp
 from app.extension import db, migrate
+from app.exceptions.not_found import NotFoundException
 
 
 # Importa tutti i modelli per renderli visibili alle migrazioni
@@ -22,6 +23,10 @@ def create_app():
     migrate.init_app(app, db)  # collega migrate all'app e al db
     
     CORS(app)
+    
+    @app.errorhandler(NotFoundException)
+    def handle_not_found(e):
+        return jsonify({"error": e.message}), 404
 
     # Registra le rotte
     

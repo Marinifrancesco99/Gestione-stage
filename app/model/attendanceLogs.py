@@ -20,7 +20,7 @@ class AttendanceLogs(db.Model):
     internship_id = db.Column(db.Integer, db.ForeignKey('internship.id'))
     internship = db.relationship("Internship", back_populates="attendance_logs")
     
-    
+    # Metodo per convertire l'istanza in un dizionario perchè oggetti sqlalchemy non sono serializzabili in JSON
     def to_dict(self):
         return {
             'id': self.id,
