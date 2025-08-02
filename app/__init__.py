@@ -6,6 +6,7 @@ from app.config import Config
 from app.routes.user_routes import user_bp
 from app.routes.auth_routes import auth_bp
 from app.routes.attendanceLogs_routes import attendanceLogs_bp
+from app.routes.classes_routes import classes_bp
 from app.extension import db, migrate
 from app.exceptions.not_found import NotFoundException
 
@@ -33,5 +34,6 @@ def create_app():
     app.register_blueprint(user_bp, url_prefix="/api/users")
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(attendanceLogs_bp, url_prefix="/api/attendance_logs")
+    app.register_blueprint(classes_bp, url_prefix="/api/classes")
 
     return app

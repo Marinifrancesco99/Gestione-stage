@@ -1,4 +1,5 @@
 from app.dao.classes_dao import ClassesDAO
+from app.exceptions.not_found import NotFoundException
 
 class ClassesService:
     @staticmethod
@@ -9,7 +10,7 @@ class ClassesService:
     def get_class_by_id(id):
         the_class = ClassesDAO.get_classes_by_id(id)
         if not the_class:
-            raise ValueError(f"Class with id {id} not found.")
+            raise NotFoundException(f"Class with id: {id} not found.")
         return the_class
 
     @staticmethod
@@ -20,13 +21,13 @@ class ClassesService:
     def update_class(id, name=None):
         existing_class = ClassesDAO.get_classes_by_id(id)
         if not existing_class:
-            raise ValueError(f"Class with id {id} not found.")
+            raise NotFoundException(f"Class with id: {id} not found.")
         return ClassesDAO.update_class(id, name)
 
     @staticmethod
     def delete_class(id):
         the_class = ClassesDAO.get_classes_by_id(id)
         if not the_class:
-            raise ValueError(f"Class with id {id} not found.")
+            raise NotFoundException(f"Class with id: {id} not found.")
         ClassesDAO.delete_class(id)
         return True

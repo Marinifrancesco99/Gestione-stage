@@ -12,3 +12,11 @@ class Classes(db.Model):
     # Fk di course
     course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))
     course = db.relationship("Course", back_populates="classes")
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'students': [student.id for student in self.students],
+            'course_id': self.course_id
+        }
