@@ -26,13 +26,14 @@ class ClassesDAO:
 
     # update class
     @staticmethod
-    def update_class(id, name=None):
+    def update_class(id, name=None, course_id=None):
         the_class = Classes.query.get(id)
         if not the_class:
             return None
 
         if name is not None:
             the_class.name = name
+            the_class.course_id = course_id
 
         db.session.commit()
         return the_class

@@ -18,11 +18,11 @@ class ClassesService:
         return ClassesDAO.create_class(name, course_id)
 
     @staticmethod
-    def update_class(id, name=None):
+    def update_class(id, name=None, course_id=None):
         existing_class = ClassesDAO.get_classes_by_id(id)
         if not existing_class:
             raise NotFoundException(f"Class with id: {id} not found.")
-        return ClassesDAO.update_class(id, name)
+        return ClassesDAO.update_class(id, name, course_id)
 
     @staticmethod
     def delete_class(id):
