@@ -18,3 +18,25 @@ def token_required(f):
         return f(*args, **kwargs)
 
     return decorated_function
+
+
+def roles_required(*roles):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            auth_header = request.headers.get("Authorization")
+            if not auth_header or not auth_header.startswith("Bearer "):
+                return jsonify({"error": "Token mancante"}), 401
+
+            token = auth_header.split(" ")[1]
+            payload = decode_jwt(token)
+            if not payload:
+                return jsonify({"error": "Token non valido o scaduto"}), 401
+
+            if payload.get("role") not in roles:
+                return jsonify({"error": "Non autorizzato"}), 403
+
+            g.current_user = payload
+            return f(*args, **kwargs)
+        return decorated_function
+    return decorator
