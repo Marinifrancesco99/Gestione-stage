@@ -30,3 +30,21 @@ class Companies(db.Model):
     # Relazione con interviews
     interview = db.relationship("Interview", back_populates = "company")
     
+    def to_dict(self):
+        return {
+        "id": self.id,
+        "number": self.number,
+        "companyName": self.companyName,
+        "address": self.address,
+        "email": self.email,
+        "province": self.province,
+        "note": self.note,
+        "city": self.city,
+        "cap": self.cap,
+        "partitaIVA": self.partitaIVA,
+        "type_id": self.type_id,
+        "internship_ids": [i.id for i in self.internship],
+        "tutor_ids": [t.id for t in self.tutor],
+        "interview_ids": [iv.id for iv in self.interview]
+        }
+    
