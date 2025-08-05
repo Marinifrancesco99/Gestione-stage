@@ -34,3 +34,17 @@ class Convention(db.Model):
     internship = db.relationship("Internship", back_populates = 'convention')
     
     
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'downloaded': self.downloaded,
+            'signed': self.signed,
+            'download_date': self.download_date.isoformat() if self.download_date else None,
+            'signed_date': self.signed_date.isoformat() if self.signed_date else None,
+            'signed_by': self.signed_by,
+            'note': self.note,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None,
+            'document_filename': self.document_filename,
+            'internship_id': self.internship_id
+        }
