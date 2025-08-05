@@ -1,4 +1,5 @@
 from app.dao.courses_dao import CoursesDAO
+from app.exceptions.not_found import NotFoundException
 
 class CoursesService:
     @staticmethod
@@ -9,7 +10,7 @@ class CoursesService:
     def get_course_by_id(course_id):
         course = CoursesDAO.get_course_by_id(course_id)
         if not course:
-            raise ValueError(f"Course with ID {course_id} not found")
+            raise NotFoundException(f"Course with ID {course_id} not found")
         return course
     
     @staticmethod
@@ -20,14 +21,14 @@ class CoursesService:
     def update_course(course_id, name):
         existing_course = CoursesDAO.get_course_by_id(course_id)
         if not existing_course:
-            raise ValueError(f"Course with ID {course_id} not found")
+            raise NotFoundException(f"Course with ID {course_id} not found")
         return CoursesDAO.update_course(course_id, name)
     
     @staticmethod
     def delete_course(course_id):
         course = CoursesDAO.get_course_by_id(course_id)
         if not course:
-            raise ValueError(f"Course with ID {course_id} not found")   
+            raise NotFoundException(f"Course with ID {course_id} not found")   
         CoursesDAO.delete_course(course_id)
         return True
     
@@ -35,26 +36,26 @@ class CoursesService:
     def get_classes_for_course(course_id):
         classes = CoursesDAO.get_classes_for_course(course_id)
         if not classes:
-            raise ValueError(f"No classes found for course ID {course_id}")
+            raise NotFoundException(f"No classes found for course ID {course_id}")
         return classes
     
     @staticmethod
     def get_professors_for_course(course_id):
         professors = CoursesDAO.get_professors_for_course(course_id)
         if not professors:
-            raise ValueError(f"No professors found for course ID {course_id}")
+            raise NotFoundException(f"No professors found for course ID {course_id}")
         return professors
     
     @staticmethod
     def add_professor_to_course(course_id, professor):
         course = CoursesDAO.get_course_by_id(course_id)
         if not course:
-            raise ValueError(f"Course with ID {course_id} not found")
+            raise NotFoundException(f"Course with ID {course_id} not found")
         return CoursesDAO.add_professor_to_course(course_id, professor)
     
     @staticmethod
     def remove_professor_from_course(course_id, professor):
         course = CoursesDAO.get_course_by_id(course_id)
         if not course:
-            raise ValueError(f"Course with ID {course_id} not found")
+            raise NotFoundException(f"Course with ID {course_id} not found")
         return CoursesDAO.remove_professor_from_course(course_id, professor)

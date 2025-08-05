@@ -16,3 +16,12 @@ class Course(db.Model):
         secondary=professor_course,
         back_populates='courses'
     )
+    
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'class_ids': [classe.id for classe in self.classes],
+            'professor_ids': [prof.id for prof in self.professors]
+        }

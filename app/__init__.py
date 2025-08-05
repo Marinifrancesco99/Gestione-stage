@@ -10,6 +10,7 @@ from app.routes.classes_routes import classes_bp
 from app.routes.companies_routes import companies_bp
 from app.routes.companyTipes_routes import companyTipes_bp
 from app.routes.convention_routes import convention_bp
+from app.routes.course_routes import course_bp
 from app.extension import db, migrate
 from app.exceptions.not_found import NotFoundException
 
@@ -41,5 +42,6 @@ def create_app():
     app.register_blueprint(companies_bp, url_prefix="/api/companies")
     app.register_blueprint(companyTipes_bp, url_prefix="/api/companyTipes")
     app.register_blueprint(convention_bp, url_prefix="/api/convention")
+    app.register_blueprint(course_bp, url_prefix="/api/course")
 
     return app
