@@ -1,4 +1,5 @@
 from app.dao.companyTipes_dao import CompanyTypesDao
+from app.exceptions.not_found import NotFoundException
 
 class CompanyTypesService:
     @staticmethod
@@ -9,7 +10,7 @@ class CompanyTypesService:
     def get_company_type_by_id(id):
         company_type = CompanyTypesDao.get_company_type_by_id(id)
         if not company_type:
-            raise ValueError(f"Company Type with id {id} not found.")
+            raise NotFoundException (f"Company Type with id: {id} not found.")
         return company_type
     
     @staticmethod
@@ -20,13 +21,13 @@ class CompanyTypesService:
     def update_company_type(id, name=None):
         existing_company_type = CompanyTypesDao.get_company_type_by_id(id)
         if not existing_company_type:
-            raise ValueError(f"Company Type with id {id} not found.")
+            raise NotFoundException (f"Company Type with id: {id} not found.")
         return CompanyTypesDao.update_company_type(id, name)
     
     @staticmethod
     def delete_company_type(id):
         company_type = CompanyTypesDao.get_company_type_by_id(id)
         if not company_type:
-            raise ValueError(f"Company Type with id {id} not found.")
+            raise NotFoundException (f"Company Type with id: {id} not found.")
         CompanyTypesDao.delete_company_type(id)
         return True

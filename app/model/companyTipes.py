@@ -9,4 +9,9 @@ class CompanyTypes(db.Model):
     # Stabiliamo la relazione 1:1 con Companies
     companies = db.relationship("Companies", back_populates="company_type")
     
-    
+    def to_dict(self):
+        return{
+            'id': self.id,
+            'name': self.name,
+            'companies': [company.id for company in self.companies]
+        }
