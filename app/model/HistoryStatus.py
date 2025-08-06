@@ -16,3 +16,14 @@ class HistoryStatus(db.Model):
     internship_id = db.Column(db.Integer, db.ForeignKey('internship.id'))
     internship = db.relationship('Internship', back_populates='history_status')
     
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'status': self.status,
+            'changed_at': self.changed_at.isoformat() if self.changed_at else None,
+            'changed_by': self.changed_by,
+            'note': self.note,
+            'reason': self.reason,
+            'internship_id': self.internship_id
+        }
