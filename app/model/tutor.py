@@ -22,3 +22,19 @@ class Tutor(db.Model):
     # Fk che punta a companies 
     company_id = db.Column(db.Integer, db.ForeignKey('companies.id'))
     company = db.relationship("Companies", back_populates = "tutor")
+    
+    
+    
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'surname': self.surname,
+            'email': self.email,
+            'role': self.role,
+            'user_id': self.user_id,
+            'internship_ids': [internship.id for internship in self.internship],
+            'attendance_log_ids': [log.id for log in self.attendance_logs],
+            'company_id': self.company_id
+        }

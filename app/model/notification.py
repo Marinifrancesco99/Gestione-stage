@@ -17,4 +17,19 @@ class Notification(db.Model):
     # Relazione con stage
     internship_id = db.Column(db.Integer, db.ForeignKey('internship.id'), nullable=True)
     internship = db.relationship("Internship", back_populates="notifications")
+    
+    
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'message': self.message,
+            'type': self.type,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'read': self.read,
+            'due_date': self.due_date.isoformat() if self.due_date else None,
+            'user_id': self.user_id,
+            'internship_id': self.internship_id
+        }
+
 

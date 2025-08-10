@@ -1,4 +1,5 @@
 from app.dao.students_dao import StudentsDAO
+from app.exceptions.not_found import NotFoundException
 
 class StudentsService:
     @staticmethod
@@ -9,7 +10,7 @@ class StudentsService:
     def get_student_by_id(student_id):
         student = StudentsDAO.get_student_by_id(student_id)
         if not student:
-            raise ValueError("Student not found")
+            raise NotFoundException("Student not found")
         return student
     
     @staticmethod
@@ -24,14 +25,14 @@ class StudentsService:
     def update_student(student_id, **kwargs):
         student = StudentsDAO.get_student_by_id(student_id)
         if not student:
-            raise ValueError("Student not found")
+            raise NotFoundException("Student not found")
         return StudentsDAO.update_student(student_id, **kwargs)
     
     @staticmethod
     def delete_student(student_id):
         student = StudentsDAO.get_student_by_id(student_id)
         if not student:
-            raise ValueError("Student not found")
+            raise NotFoundException("Student not found")
         StudentsDAO.delete_student(student_id)
         return True
     
@@ -39,19 +40,19 @@ class StudentsService:
     def get_interviews_for_student(student_id):
         student = StudentsDAO.get_student_by_id(student_id)
         if not student:
-            raise ValueError("Student not found")
+            raise NotFoundException("Student not found")
         return StudentsDAO.get_interviews_for_student(student_id)
     
     @staticmethod
     def get_internship_for_student(student_id):
         student = StudentsDAO.get_student_by_id(student_id)
         if not student:
-            raise ValueError("Student not found")
+            raise NotFoundException("Student not found")
         return StudentsDAO.get_internship_for_student(student_id)
     
     @staticmethod
     def get_class_for_student(student_id):
         student = StudentsDAO.get_student_by_id(student_id)
         if not student:
-            raise ValueError("Student not found")
+            raise NotFoundException("Student not found")
         return StudentsDAO.get_class_for_student(student_id)

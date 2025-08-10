@@ -1,4 +1,5 @@
 from app.dao.notification_dao import NotificationDAO
+from app.exceptions.not_found import NotFoundException
 
 class NotificationService:
     @staticmethod
@@ -9,7 +10,7 @@ class NotificationService:
     def get_notification_by_id(notification_id):
         notification = NotificationDAO.get_notification_by_id(notification_id)
         if not notification:
-            raise ValueError(f"Notification not found with id: {notification_id}")
+            raise NotFoundException(f"Notification not found with id: {notification_id}")
         return notification
     
     @staticmethod
@@ -28,7 +29,7 @@ class NotificationService:
     def delete_notification(notification_id):
         notification = NotificationDAO.get_notification_by_id(notification_id)
         if not notification:
-            raise ValueError(f"Notification not found with id: {notification_id}")
+            raise NotFoundException(f"Notification not found with id: {notification_id}")
         NotificationDAO.delete_notification(notification_id)
         return True
     
@@ -36,21 +37,21 @@ class NotificationService:
     def delete_all_notifications_for_user(user_id):
         notifications = NotificationDAO.delete_all_notifications_for_user(user_id)
         if not notifications:
-            raise ValueError(f"No notifications found for user with id: {user_id}")
+            raise NotFoundException(f"No notifications found for user with id: {user_id}")
         return notifications
     
     @staticmethod
     def get_notifications_by_internship(internship_id):
         notifications = NotificationDAO.get_notifications_for_internship(internship_id)
         if not notifications:
-            raise ValueError(f"No notifications found for internship with id: {internship_id}")
+            raise NotFoundException(f"No notifications found for internship with id: {internship_id}")
         return notifications
     
     @staticmethod
     def get_due_notifications(now):
         notifications = NotificationDAO.get_due_notifications(now)
         if not notifications:
-            raise ValueError("No due notifications found")
+            raise NotFoundException("No due notifications found")
         return notifications
     
     

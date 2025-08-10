@@ -21,3 +21,17 @@ class User(db.Model):
 
     # Relazione con notifications
     notifications = db.relationship("Notification", back_populates="user")
+
+
+
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'role': self.role,
+            'tutor_id': self.tutor.id if self.tutor else None,
+            'student_id': self.student.id if self.student else None,
+            'notification_ids': [notif.id for notif in self.notifications]
+        }

@@ -13,6 +13,11 @@ from app.routes.convention_routes import convention_bp
 from app.routes.course_routes import course_bp
 from app.routes.historyStatus_routes import historyStatus_bp
 from app.routes.internship_routes import internship_bp
+from app.routes.interviews_routes import interview_bp
+from app.routes.notification_routes import notification_bp
+from app.routes.professors_routes import professor_bp
+from app.routes.students_routes import student_bp
+from app.routes.tutor_routes import tutor_bp
 from app.extension import db, migrate
 from app.exceptions.not_found import NotFoundException
 
@@ -47,5 +52,10 @@ def create_app():
     app.register_blueprint(course_bp, url_prefix="/api/course")
     app.register_blueprint(historyStatus_bp, url_prefix="/api/historyStatus")
     app.register_blueprint(internship_bp, url_prefix="/api/internship")
+    app.register_blueprint(interview_bp, url_prefix="/api/interview")
+    app.register_blueprint(notification_bp, url_prefix="/api/notification")
+    app.register_blueprint(professor_bp, url_prefix="/api/professors")
+    app.register_blueprint(student_bp, url_prefix="/api/students")
+    app.register_blueprint(tutor_bp, url_prefix="/api/tutor")
 
     return app

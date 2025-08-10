@@ -15,3 +15,14 @@ class Interview(db.Model):
     # Fk di student
     student_id = db.Column(db.Integer, db.ForeignKey('students.id'))
     student = db.relationship("Student", back_populates = "interview")
+    
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'date': self.date.isoformat() if self.date else None,
+            'result': self.result,
+            'note': self.note,
+            'company_id': self.company_id,
+            'student_id': self.student_id
+        }

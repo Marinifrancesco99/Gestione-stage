@@ -19,3 +19,17 @@ class Professor(db.Model):
         secondary=professor_course,
         back_populates='professors'
     )
+    
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'surname': self.surname,
+            'email': self.email,
+            'phone': self.phone,
+            'vote': self.vote,
+            'evaluation': self.evaluation,
+            'note': self.note,
+            'course_ids': [course.id for course in self.courses]
+        }
