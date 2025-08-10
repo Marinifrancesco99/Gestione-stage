@@ -33,3 +33,21 @@ class Internship(db.Model):
     
     # Relazione con notifications
     notifications = db.relationship("Notification", back_populates="internship")
+    
+    
+    
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'start_date': self.start_date.isoformat() if self.start_date else None,
+            'end_date': self.end_date.isoformat() if self.end_date else None,
+            'status': self.status,
+            'company_id': self.company_id,
+            'convention_id': self.convention.id if self.convention else None,
+            'history_status_id': self.history_status.id if self.history_status else None,
+            'tutor_id': self.tutor_id,
+            'attendance_log_ids': [log.id for log in self.attendance_logs],
+            'student_id': self.student_id,
+            'notification_ids': [notif.id for notif in self.notifications]
+        }

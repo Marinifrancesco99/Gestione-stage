@@ -12,6 +12,7 @@ from app.routes.companyTipes_routes import companyTipes_bp
 from app.routes.convention_routes import convention_bp
 from app.routes.course_routes import course_bp
 from app.routes.historyStatus_routes import historyStatus_bp
+from app.routes.internship_routes import internship_bp
 from app.extension import db, migrate
 from app.exceptions.not_found import NotFoundException
 
@@ -45,5 +46,6 @@ def create_app():
     app.register_blueprint(convention_bp, url_prefix="/api/convention")
     app.register_blueprint(course_bp, url_prefix="/api/course")
     app.register_blueprint(historyStatus_bp, url_prefix="/api/historyStatus")
+    app.register_blueprint(internship_bp, url_prefix="/api/internship")
 
     return app
