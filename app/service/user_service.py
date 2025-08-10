@@ -8,11 +8,17 @@ class UserService:
     
     @staticmethod
     def get_user_by_id(user_id):
-        return UsersDAO.get_user_by_id(user_id)
+        user = UsersDAO.get_user_by_id(user_id)
+        if not user:
+            raise NotFoundException(f"User not found with id: {user_id}")
+        return user
     
     @staticmethod
-    def get_user_by_email(email):   
-        return UsersDAO.get_user_by_email(email)
+    def get_user_by_email(email):
+        user = UsersDAO.get_user_by_email(email)
+        if not user:
+            raise NotFoundException(f"User not found with email: {email}")
+        return user
     
     @staticmethod
     def update_user(user_id, **kwargs):
