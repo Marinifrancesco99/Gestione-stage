@@ -1,6 +1,6 @@
 from flask import Blueprint
 from app.controller.user_controller import UserController
-from utils.decorators import token_required, roles_required
+from app.utils.decorators import token_required, roles_required
 
 user_bp = Blueprint('user', __name__)
 

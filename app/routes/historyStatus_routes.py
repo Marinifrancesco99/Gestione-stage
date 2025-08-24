@@ -1,6 +1,6 @@
 from flask import Blueprint
 from app.controller.historyStatus_controller import HistoryStatusController
-from utils.decorators import token_required, roles_required
+from app.utils.decorators import token_required, roles_required
 
 historyStatus_bp = Blueprint('historyStatus', __name__)
 

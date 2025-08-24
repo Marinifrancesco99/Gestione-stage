@@ -1,6 +1,6 @@
 from flask import Blueprint
 from app.controller.professor_controller import ProfessorController
-from utils.decorators import token_required, roles_required
+from app.utils.decorators import token_required, roles_required
 
 professor_bp = Blueprint('professor', __name__)
 

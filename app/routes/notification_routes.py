@@ -1,6 +1,6 @@
 from flask import Blueprint
 from app.controller.notification_controller import NotificationController
-from utils.decorators import token_required, roles_required
+from app.utils.decorators import token_required, roles_required
 
 notification_bp = Blueprint('notification', __name__)
 
